@@ -8,10 +8,10 @@ from pyspark.sql.window import Window
 
 if __name__ == '__main__':
     os.environ['PYSPARK_PYTHON'] = sys.executable
-    spark = SparkSession.builder.master("local").appName("p2").getOrCreate()
+    spark = SparkSession.builder.appName("p2").getOrCreate()
 
     patients_schema="subject_id int, gender string, anchor_age int, anchor_year string, anchor_year_group string, dod string"
     
-    patients_df = spark.read.option("header",True).schema(patients_schema).csv(sys.argv[0])
+    patients_df = spark.read.option("header",True).schema(patients_schema).csv(sys.argv[1])
     patients_df_new.select("anchor_year").show(5)
-    patients_df_new.coalesce(1).write.mode("overwrite").option("header", True).csv(sys.argv[1])
+    patients_df_new.write.mode("overwrite").option("header", True).csv(sys.argv[2])
