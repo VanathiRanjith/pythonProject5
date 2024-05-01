@@ -1,4 +1,5 @@
 import sys
+import os
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import when
 from pyspark.sql.types import StructField, StructType, IntegerType, StringType, BooleanType, DateType, DecimalType, DoubleType
